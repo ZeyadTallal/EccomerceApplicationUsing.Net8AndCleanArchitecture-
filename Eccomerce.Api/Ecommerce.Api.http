@@ -1,0 +1,12 @@
+@Ecommerce.Api_HostAddress = http://localhost:7091
+
+###
+
+POST {{Ecommerce.Api_HostAddress}}/api/products
+{
+  "ProductName": "Example Product",
+  "ProductDescription": "This is an example product description.",
+  "ProductImage": "base64-encoded-image-data-here",
+  "Price": 99.99,
+  "Merchant": "Example Merchant"
+}
