@@ -12,7 +12,9 @@ namespace Ecommerce.Infrastructure.Extensions
 		public static void AddInfrastructure(this IServiceCollection services , IConfiguration configuration)
 		{
 			var connectionString = configuration.GetConnectionString("ConnectionString");
-			services.AddDbContext<EcommerceDbContext>(options => options.UseSqlServer(connectionString));
+			services.AddDbContext<EcommerceDbContext>(options => 
+				options.UseSqlServer(connectionString)
+				.EnableSensitiveDataLogging());
 
 			services.AddScoped<IProductsRepository, ProductsRepository>();
 		}
