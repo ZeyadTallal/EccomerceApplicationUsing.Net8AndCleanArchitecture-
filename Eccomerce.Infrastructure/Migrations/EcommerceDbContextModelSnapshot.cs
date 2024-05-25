@@ -121,7 +121,6 @@ namespace Ecommerce.Infrastructure.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<byte[]>("ProductImage")
-                        .IsRequired()
                         .HasColumnType("varbinary(max)");
 
                     b.Property<string>("ProductName")

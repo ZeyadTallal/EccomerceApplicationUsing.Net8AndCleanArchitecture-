@@ -26,11 +26,18 @@ namespace Ecommerce.Infrastructure.Repositories.Products
 			var product = await dbContext.Products.FirstOrDefaultAsync(x => x.Id == id);
 			return product;
 		}
+		public async Task Delete(Product product)
+		{
+			dbContext.Remove(product);
+			await dbContext.SaveChangesAsync();
+		}
 
 		public bool IsNameExists(string name)
 		{
 			var isExisted = dbContext.Products.Any(x => x.ProductName == name);
 			return isExisted;
 		}
+
+		public async Task SaveChanges() => await dbContext.SaveChangesAsync();
 	}
 }

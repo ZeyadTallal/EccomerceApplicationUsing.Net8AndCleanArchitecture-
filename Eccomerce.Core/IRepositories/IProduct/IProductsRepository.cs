@@ -8,6 +8,8 @@ namespace Ecommerce.Core.IRepositories.IProduct
         Task<Product> GetByIdAsync(int id);
         Task<int> Create(Product product);
         bool IsNameExists(string name);
+        Task Delete(Product product);
+        Task SaveChanges();
 
 	}
 }

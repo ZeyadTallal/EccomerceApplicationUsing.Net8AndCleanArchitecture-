@@ -1,5 +1,4 @@
-﻿using Ecommerce.Application.Services.ProductsServices;
-using FluentValidation;
+﻿using FluentValidation;
 using FluentValidation.AspNetCore;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -11,8 +10,8 @@ namespace Ecommerce.Application.Extensions
 		public static void AddApplication(this IServiceCollection services)
 		{
 			var applicationAssembly = typeof(ServiceCollectionExtensions).Assembly;
-
-			services.AddScoped<IProductsService, ProductsService>();
+			
+			services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(applicationAssembly));
 
 			services.AddAutoMapper(applicationAssembly);
 
