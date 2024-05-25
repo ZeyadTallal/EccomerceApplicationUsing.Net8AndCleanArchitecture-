@@ -3,7 +3,7 @@ using MediatR;
 
 namespace Ecommerce.Application.Products.Queries.GetProductById
 {
-	public class GetProductByIdQuery(int id) : IRequest<ProductDto?>
+	public class GetProductByIdQuery(int id) : IRequest<ProductDto>
 	{
         public int Id { get; } = id;
     }

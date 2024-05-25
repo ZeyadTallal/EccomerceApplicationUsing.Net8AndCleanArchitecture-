@@ -26,9 +26,6 @@ namespace Ecommerce.Api.Controllers.Products
 		{
 			var product = await mediator.Send(new GetProductByIdQuery(id));
 
-			if(product == null) 
-				return NotFound();
-
 			return Ok(product);
 		}
 
@@ -42,12 +39,10 @@ namespace Ecommerce.Api.Controllers.Products
 		[HttpDelete("{id}")]
 		public async Task<IActionResult> Delete([FromRoute] int id)
 		{
-			var isDeleted = await mediator.Send(new DeleteProductCommand(id));
+			await mediator.Send(new DeleteProductCommand(id));
 
-			if (isDeleted)
-				return NoContent();
-
-			return NotFound();
+			
+			return NoContent();
 		}
 
 		[HttpPatch("{id}")]
@@ -63,12 +58,9 @@ namespace Ecommerce.Api.Controllers.Products
 				Merchant = input.Merchant,
 			};
 
-			var isUpdated = await mediator.Send(updateProductCommand);//new UpdateProductCommand(id));
+			await mediator.Send(updateProductCommand);//new UpdateProductCommand(id));
 
-			if (isUpdated)
-				return NoContent();
-
-			return NotFound();
+			return NoContent();
 		}
 	}
 	

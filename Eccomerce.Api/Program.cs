@@ -1,3 +1,4 @@
+using Ecommerce.Api.Middlewares;
 using Ecommerce.Application.Extensions;
 using Ecommerce.Infrastructure.Extensions;
 using Serilog;
@@ -12,6 +13,8 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddScoped<ErrorHandlingMiddleware>();
+
 builder.Services.AddApplication();
 builder.Services.AddInfrastructure(builder.Configuration);
 
@@ -24,6 +27,8 @@ builder.Host.UseSerilog((context, configuration) =>
 );
 
 var app = builder.Build();
+
+app.UseMiddleware<ErrorHandlingMiddleware>();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

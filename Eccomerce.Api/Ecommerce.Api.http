@@ -2,11 +2,4 @@
 
 ###
 
-POST {{Ecommerce.Api_HostAddress}}/api/products
-{
-  "ProductName": "Example Product",
-  "ProductDescription": "This is an example product description.",
-  "ProductImage": "base64-encoded-image-data-here",
-  "Price": 99.99,
-  "Merchant": "Example Merchant"
-}
+GET{{Ecommerce.API_HostAddress}}/api/Products/GetById/1
