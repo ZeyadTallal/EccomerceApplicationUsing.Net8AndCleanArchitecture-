@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Ecommerce.Application.Products.Commands.UpdateProduct;
 using Ecommerce.Core.Entities.Products;
 
 namespace Ecommerce.Application.Dto.Products
@@ -8,7 +9,8 @@ namespace Ecommerce.Application.Dto.Products
         public ProductsProfile()
         {
             CreateMap<Product, ProductDto>();
-            CreateMap<CreateProductDto, Product>();
+            //CreateMap<CreateProductDto, Product>();
+            CreateMap<UpdateProductCommand, Product>();
         }
     }
 }

@@ -7,7 +7,7 @@ namespace Ecommerce.Core.Entities.Products
         public int Id { get; set; }
         public string ProductName { get; set; } 
         public string ProductDescription { get; set; }
-        public byte[] ProductImage { get; set; } = new byte[0];
+        public byte[]? ProductImage { get; set; }
         public decimal Price { get; set; }
         public string Merchant { get; set; }
         public ICollection<OrderProduct> OrderProducts { get; set; } = new HashSet<OrderProduct>();
