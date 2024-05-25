@@ -5,7 +5,7 @@ using System.Text.Json.Serialization;
 
 namespace Ecommerce.Application.Products.Commands.UpdateProduct
 {
-	public class UpdateProductCommand: IRequest<bool>
+	public class UpdateProductCommand: IRequest
 	{
 		//[JsonIgnore]
 		public int Id { get; set; }
