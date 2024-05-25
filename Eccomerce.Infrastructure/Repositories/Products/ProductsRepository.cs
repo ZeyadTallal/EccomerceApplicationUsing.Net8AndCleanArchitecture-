@@ -1,7 +1,9 @@
-﻿using Ecommerce.Core.Entities.Products;
+﻿using Ecommerce.Core.Constants;
+using Ecommerce.Core.Entities.Products;
 using Ecommerce.Core.IRepositories.IProduct;
 using Ecommerce.Infrastructure.Context;
 using Microsoft.EntityFrameworkCore;
+using System.Linq.Expressions;
 
 namespace Ecommerce.Infrastructure.Repositories.Products
 {
@@ -15,10 +17,36 @@ namespace Ecommerce.Infrastructure.Repositories.Products
 			return product.Id;
 		}
 
-		public async Task<IEnumerable<Product>> GetAllAsync()
+		public async Task<(IEnumerable<Product>,int)> GetAllAsync(string? Keyword , int pageSize, int pageNumber , string? sortBy , SortDirection sortDirection)
 		{
-			var products = await dbContext.Products.ToListAsync();
-			return products;
+			var searchByValue = Keyword?.ToLower();
+
+			var query = dbContext.Products
+				.Where(r => searchByValue == null ||
+						(r.ProductName.ToLower().Contains(searchByValue) || r.ProductDescription.ToLower().Contains(searchByValue)));
+
+			var totalCount = await query.CountAsync();
+
+			if(sortBy != null)
+			{
+				var columnSelector = new Dictionary<string, Expression<Func<Product , object>>>
+				{
+					{nameof(Product.ProductName),r=> r.ProductName},
+					{nameof(Product.Price),r=> r.Price},
+				};
+
+				var selectedColumn = columnSelector[sortBy];
+
+				query = sortDirection == SortDirection.Ascending 
+					? query.OrderBy(selectedColumn)
+					: query.OrderByDescending(selectedColumn);
+			}
+			var products = await query
+				.Skip(pageSize * (pageNumber-1))
+				.Take(pageSize)
+				.ToListAsync();
+
+			return (products,totalCount);
 		}
 
 		public async Task<Product> GetByIdAsync(int id)

@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Ecommerce.Application.Common;
 using Ecommerce.Application.Dto.Products;
 using Ecommerce.Core.IRepositories.IProduct;
 using MediatR;
@@ -8,15 +9,17 @@ namespace Ecommerce.Application.Products.Queries.GetAllProducts
 {
 	public class GetAllProductsHandler(ILogger<GetAllProductsHandler> logger,
 		IProductsRepository productsRepository,
-		IMapper mapper ) : IRequestHandler<GetAllProductsQuery, IEnumerable<ProductDto>>
+		IMapper mapper ) : IRequestHandler<GetAllProductsQuery, PagedResult<ProductDto>>
 	{
-		public async Task<IEnumerable<ProductDto>> Handle(GetAllProductsQuery request, CancellationToken cancellationToken)
+		public async Task<PagedResult<ProductDto>> Handle(GetAllProductsQuery request, CancellationToken cancellationToken)
 		{
 			logger.LogInformation("Getting all Products");
 
-			var products = await productsRepository.GetAllAsync();
+			var (products,totalCount) = await productsRepository.GetAllAsync(request.Keyword, request.PageSize , request.PageNumber,request.SortBy , request.SortDirection);
 			var productsDtos = mapper.Map<IEnumerable<ProductDto>>(products);
-			return productsDtos;
+
+			var result = new PagedResult<ProductDto>(productsDtos , totalCount , request.PageSize , request.PageNumber);
+			return result;
 		}
 	}
 }

@@ -15,9 +15,9 @@ namespace Ecommerce.Api.Controllers.Products
 	public class ProductsController(IMediator mediator) : ControllerBase
 	{
 		[HttpGet]
-		public async Task<ActionResult<IEnumerable<ProductDto>>> GetAll()
+		public async Task<ActionResult<IEnumerable<ProductDto>>> GetAll([FromQuery]GetAllProductsQuery query)
 		{
-			var products = await mediator.Send(new GetAllProductsQuery());
+			var products = await mediator.Send(query);
 			return Ok(products);
 		}
 
