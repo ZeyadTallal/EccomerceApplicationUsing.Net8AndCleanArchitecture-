@@ -11,7 +11,7 @@ namespace Ecommerce.Application.Products.Commands.UpdateProduct
 	{
 		public async Task<bool> Handle(UpdateProductCommand request, CancellationToken cancellationToken)
 		{
-			logger.LogInformation($"Updating Product with id : {request.Id}");
+			logger.LogInformation("Updating Product with id : {ProductId} with {@UpdateProduct}" , request.Id , request);
 
 			var product = await productsRepository.GetByIdAsync(request.Id);
 

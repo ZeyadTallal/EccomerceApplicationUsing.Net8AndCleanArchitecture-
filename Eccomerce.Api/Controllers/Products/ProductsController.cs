@@ -15,14 +15,14 @@ namespace Ecommerce.Api.Controllers.Products
 	public class ProductsController(IMediator mediator) : ControllerBase
 	{
 		[HttpGet]
-		public async Task<IActionResult> GetAll()
+		public async Task<ActionResult<IEnumerable<ProductDto>>> GetAll()
 		{
 			var products = await mediator.Send(new GetAllProductsQuery());
 			return Ok(products);
 		}
 
 		[HttpGet("{id}")]
-		public async Task<IActionResult> GetById([FromRoute]int id)
+		public async Task<ActionResult<ProductDto?>> GetById([FromRoute]int id)
 		{
 			var product = await mediator.Send(new GetProductByIdQuery(id));
 

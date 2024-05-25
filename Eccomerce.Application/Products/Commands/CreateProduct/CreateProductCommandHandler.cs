@@ -11,7 +11,7 @@ namespace Ecommerce.Application.Products.Commands.CreateProduct
 	{
 		public async Task<int> Handle(CreateProductCommand request, CancellationToken cancellationToken)
 		{
-			logger.LogInformation("Creating a new Product");
+			logger.LogInformation("Creating a new Product {@Product}" , request);
 
 
 			using var stream = request.ProductImage != null ? new MemoryStream() : null;
