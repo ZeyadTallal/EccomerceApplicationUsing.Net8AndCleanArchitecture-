@@ -1,4 +1,7 @@
+using Asp.Versioning;
+using Asp.Versioning.ApiExplorer;
 using Ecommerce.Api.Middlewares;
+using Ecommerce.Api.SwaggerVersioning;
 using Ecommerce.Application.Extensions;
 using Ecommerce.Infrastructure.Extensions;
 using Serilog;
@@ -12,6 +15,19 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Services.AddApiVersioning(option =>
+{
+	option.AssumeDefaultVersionWhenUnspecified = true;
+	option.DefaultApiVersion = ApiVersion.Default;
+	option.ReportApiVersions = true;
+}).AddApiExplorer(option =>
+{
+	option.GroupNameFormat = "'v'V";
+	option.SubstituteApiVersionInUrl = true;
+});
+
+builder.Services.ConfigureOptions<ConfigureSwaggerGenOptions>();
 
 builder.Services.AddScoped<ErrorHandlingMiddleware>();
 
@@ -34,7 +50,18 @@ app.UseMiddleware<ErrorHandlingMiddleware>();
 if (app.Environment.IsDevelopment())
 {
 	app.UseSwagger();
-	app.UseSwaggerUI();
+	app.UseSwaggerUI(options =>
+	{
+		var descriptions = app.DescribeApiVersions();
+
+		foreach(ApiVersionDescription description in descriptions)
+		{
+			string url = $"/swagger/{description.GroupName}/Swagger.json";
+			string name = description.GroupName.ToUpperInvariant();
+
+			options.SwaggerEndpoint(url, name);
+		}
+	});
 }
 
 app.UseSerilogRequestLogging();
