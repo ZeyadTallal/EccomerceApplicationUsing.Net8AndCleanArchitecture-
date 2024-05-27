@@ -1,7 +1,4 @@
 ﻿using Ecommerce.Application.Dto.OrderProducts;
-using Ecommerce.Core.Entities.Customers;
-using Ecommerce.Core.Entities.OrderProducts;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Ecommerce.Application.Dto.Orders
 {

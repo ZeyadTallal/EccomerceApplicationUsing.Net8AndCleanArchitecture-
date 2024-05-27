@@ -1,13 +1,9 @@
 ﻿using AutoMapper;
 using Ecommerce.Application.Dto.OrderProducts;
 using Ecommerce.Application.Dto.Orders;
-using Ecommerce.Application.Dto.Products;
-using Ecommerce.Application.Products.Queries.GetProductById;
 using Ecommerce.Core.Entities.Orders;
-using Ecommerce.Core.Entities.Products;
 using Ecommerce.Core.Exceptions;
 using Ecommerce.Core.IRepositories.IOrder;
-using Ecommerce.Core.IRepositories.IProduct;
 using MediatR;
 using Microsoft.Extensions.Logging;
 

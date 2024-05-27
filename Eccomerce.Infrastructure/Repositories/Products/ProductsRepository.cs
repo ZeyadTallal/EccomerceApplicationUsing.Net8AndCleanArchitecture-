@@ -10,13 +10,6 @@ namespace Ecommerce.Infrastructure.Repositories.Products
 	public class ProductsRepository(EcommerceDbContext dbContext)
 		: IProductsRepository
 	{
-		public async Task<int> Create(Product product)
-		{
-			dbContext.Products.Add(product);
-			await dbContext.SaveChangesAsync();
-			return product.Id;
-		}
-
 		public async Task<(IEnumerable<Product>,int)> GetAllAsync(string? Keyword , int pageSize, int pageNumber , string? sortBy , SortDirection sortDirection)
 		{
 			var searchByValue = Keyword?.ToLower();
@@ -48,24 +41,27 @@ namespace Ecommerce.Infrastructure.Repositories.Products
 
 			return (products,totalCount);
 		}
-
 		public async Task<Product> GetByIdAsync(int id)
 		{
 			var product = await dbContext.Products.FirstOrDefaultAsync(x => x.Id == id);
 			return product;
+		}
+		public async Task<int> Create(Product product)
+		{
+			dbContext.Products.Add(product);
+			await dbContext.SaveChangesAsync();
+			return product.Id;
 		}
 		public async Task Delete(Product product)
 		{
 			dbContext.Remove(product);
 			await dbContext.SaveChangesAsync();
 		}
-
 		public bool IsNameExists(string name)
 		{
 			var isExisted = dbContext.Products.Any(x => x.ProductName == name);
 			return isExisted;
 		}
-
 		public async Task SaveChanges() => await dbContext.SaveChangesAsync();
 	}
 }

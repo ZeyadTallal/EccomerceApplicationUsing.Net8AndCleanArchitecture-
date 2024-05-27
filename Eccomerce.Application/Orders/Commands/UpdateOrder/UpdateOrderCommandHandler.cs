@@ -1,5 +1,4 @@
-﻿using Ecommerce.Application.Orders.Commands.CreateOrder;
-using Ecommerce.Core.Entities.OrderProducts;
+﻿using Ecommerce.Core.Entities.OrderProducts;
 using Ecommerce.Core.Entities.Orders;
 using Ecommerce.Core.Exceptions;
 using Ecommerce.Core.IRepositories.IOrder;

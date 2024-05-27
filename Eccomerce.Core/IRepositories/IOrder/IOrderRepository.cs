@@ -1,6 +1,5 @@
 ﻿using Ecommerce.Core.Constants;
 using Ecommerce.Core.Entities.Orders;
-using Ecommerce.Core.Entities.Products;
 
 namespace Ecommerce.Core.IRepositories.IOrder
 {

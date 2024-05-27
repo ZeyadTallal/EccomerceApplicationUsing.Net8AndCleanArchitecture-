@@ -1,8 +1,6 @@
 ﻿using Ecommerce.Core.Entities.OrderProducts;
 using Ecommerce.Core.Entities.Orders;
-using Ecommerce.Core.Entities.Products;
 using Ecommerce.Core.IRepositories.IOrder;
-using Ecommerce.Core.IRepositories.IProduct;
 using MediatR;
 using Microsoft.Extensions.Logging;
 
