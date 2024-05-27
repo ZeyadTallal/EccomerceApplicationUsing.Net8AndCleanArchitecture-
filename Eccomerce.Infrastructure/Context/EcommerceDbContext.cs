@@ -36,10 +36,6 @@ namespace Ecommerce.Infrastructure.Context
 					x.ProductId
 				});
 
-			modelBuilder.Entity<OrderProduct>()
-			.Property<int>("Id") 
-			.ValueGeneratedOnAdd();
-
 			modelBuilder.Entity<Customer>()
 				.HasMany(x => x.Orders)
 				.WithOne(x => x.Customer);
