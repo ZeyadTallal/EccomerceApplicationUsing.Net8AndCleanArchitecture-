@@ -3,7 +3,6 @@ using Ecommerce.Core.Entities.Orders;
 using Ecommerce.Core.IRepositories.IOrder;
 using Ecommerce.Infrastructure.Context;
 using Microsoft.EntityFrameworkCore;
-using System.Linq.Expressions;
 
 namespace Ecommerce.Infrastructure.Repositories.Orders
 {
@@ -36,7 +35,6 @@ namespace Ecommerce.Infrastructure.Repositories.Orders
 				.ThenInclude(x => x.Product)
 				.Include(x => x.Customer)
 				.FirstOrDefaultAsync(x => x.Id == id);
-			//order.OrderProducts.Sum(x => x.Quantity * x.Product.Price);
 			return order;
 		}
 		public async Task<int> Create(Order order)

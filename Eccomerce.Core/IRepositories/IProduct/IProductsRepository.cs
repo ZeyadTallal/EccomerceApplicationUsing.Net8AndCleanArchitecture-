@@ -11,6 +11,5 @@ namespace Ecommerce.Core.IRepositories.IProduct
         bool IsNameExists(string name);
         Task Delete(Product product);
         Task SaveChanges();
-
 	}
 }

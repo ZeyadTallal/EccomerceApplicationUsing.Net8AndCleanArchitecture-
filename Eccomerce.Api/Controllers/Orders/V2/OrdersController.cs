@@ -6,7 +6,6 @@ using Ecommerce.Application.Orders.Commands.DeleteOrder;
 using Ecommerce.Application.Orders.Commands.UpdateOrder;
 using Ecommerce.Application.Orders.Queries.GetAllOrders;
 using Ecommerce.Application.Orders.Queries.GetOrderById;
-using Ecommerce.Core.Entities.OrderProducts;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 

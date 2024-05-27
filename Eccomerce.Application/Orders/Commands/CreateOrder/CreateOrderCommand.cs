@@ -1,5 +1,4 @@
 ﻿using Ecommerce.Application.Dto.OrderProducts;
-using Ecommerce.Core.Entities.OrderProducts;
 using MediatR;
 using System.ComponentModel.DataAnnotations;
 

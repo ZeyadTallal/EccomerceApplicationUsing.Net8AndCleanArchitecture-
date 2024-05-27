@@ -1,5 +1,4 @@
-﻿using Ecommerce.Application.Dto.Products;
-using FluentValidation;
+﻿using FluentValidation;
 
 namespace Ecommerce.Application.Orders.Queries.GetAllOrders
 {
