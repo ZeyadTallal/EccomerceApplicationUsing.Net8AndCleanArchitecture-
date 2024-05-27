@@ -1,5 +1,4 @@
-﻿using Ecommerce.Application.Dto.Products;
-using Ecommerce.Core.IRepositories.IProduct;
+﻿using Ecommerce.Core.IRepositories.IProduct;
 using FluentValidation;
 
 namespace Ecommerce.Application.Products.Commands.CreateProduct
