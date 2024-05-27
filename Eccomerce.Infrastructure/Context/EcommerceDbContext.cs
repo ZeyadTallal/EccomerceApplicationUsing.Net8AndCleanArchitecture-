@@ -20,6 +20,30 @@ namespace Ecommerce.Infrastructure.Context
 		protected override void OnModelCreating(ModelBuilder modelBuilder)
 		{
 			base.OnModelCreating(modelBuilder);
+
+			modelBuilder.Entity<Order>()
+				.HasMany(x => x.OrderProducts)
+				.WithOne(x => x.Order);
+
+			modelBuilder.Entity<Product>()
+				.HasMany(x => x.OrderProducts)
+				.WithOne(x => x.Product);
+
+			modelBuilder.Entity<OrderProduct>()
+				.HasKey(x => new
+				{
+					x.OrderId,
+					x.ProductId
+				});
+
+			modelBuilder.Entity<OrderProduct>()
+			.Property<int>("Id") 
+			.ValueGeneratedOnAdd();
+
+			modelBuilder.Entity<Customer>()
+				.HasMany(x => x.Orders)
+				.WithOne(x => x.Customer);
 		}
+
 	}
 }

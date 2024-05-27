@@ -8,11 +8,8 @@ namespace Ecommerce.Core.Entities.Orders
 	{
 		public int Id { get; set; }
 		public string DeliveryAdress { get; set; } = string.Empty;
-		public decimal TotalCost { get; set; }
 		public int CustomerId { get; set; }
 		public DateTime DeliveryTime { get; set; }
-
-		[ForeignKey(nameof(CustomerId))]
 		public Customer Customer { get; set; }
 		public ICollection<OrderProduct> OrderProducts { get; set; } = new HashSet<OrderProduct>();
 	}

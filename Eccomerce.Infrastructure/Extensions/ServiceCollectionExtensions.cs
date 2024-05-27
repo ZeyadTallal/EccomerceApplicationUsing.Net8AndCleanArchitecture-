@@ -1,5 +1,7 @@
-﻿using Ecommerce.Core.IRepositories.IProduct;
+﻿using Ecommerce.Core.IRepositories.IOrder;
+using Ecommerce.Core.IRepositories.IProduct;
 using Ecommerce.Infrastructure.Context;
+using Ecommerce.Infrastructure.Repositories.Orders;
 using Ecommerce.Infrastructure.Repositories.Products;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -17,6 +19,7 @@ namespace Ecommerce.Infrastructure.Extensions
 				.EnableSensitiveDataLogging());
 
 			services.AddScoped<IProductsRepository, ProductsRepository>();
+			services.AddScoped<IOrderRepository, OrderRepository>();
 		}
 	}
 }

@@ -1,5 +1,7 @@
 ﻿
 using Ecommerce.Core.Exceptions;
+using Microsoft.AspNetCore.Http.HttpResults;
+using System.Net;
 
 namespace Ecommerce.Api.Middlewares
 {
@@ -17,6 +19,13 @@ namespace Ecommerce.Api.Middlewares
 				await context.Response.WriteAsync(notFound.Message);
 
 				logger.LogWarning(notFound.Message);
+			}
+			catch(OrderHasProductsException orderHasProducts)
+			{
+				context.Response.StatusCode = (int)HttpStatusCode.BadRequest;
+				await context.Response.WriteAsync(orderHasProducts.Message);
+
+				logger.LogWarning(orderHasProducts.Message);
 			}
 			catch (Exception ex)
 			{

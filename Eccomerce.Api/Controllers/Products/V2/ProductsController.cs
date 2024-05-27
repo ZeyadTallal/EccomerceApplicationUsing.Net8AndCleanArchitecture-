@@ -64,7 +64,7 @@ namespace Ecommerce.Api.Controllers.Products.V2
                 Merchant = input.Merchant,
             };
 
-            await mediator.Send(updateProductCommand);//new UpdateProductCommand(id));
+            await mediator.Send(updateProductCommand);
 
             return NoContent();
         }

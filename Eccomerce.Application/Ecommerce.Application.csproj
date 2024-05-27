@@ -7,6 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Validators\**" />
+    <EmbeddedResource Remove="Validators\**" />
+    <None Remove="Validators\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="AutoMapper" Version="13.0.1" />
     <PackageReference Include="FluentValidation.AspNetCore" Version="11.3.0" />
     <PackageReference Include="MediatR" Version="12.2.0" />
@@ -15,10 +21,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Eccomerce.Core\Ecommerce.Core.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Validators\Products\" />
   </ItemGroup>
 
 </Project>
